@@ -5,30 +5,30 @@
             }
             agent any
             stages{
-                stage('Checkout on Master'){
+                stage('Checkout on Master by Chike'){
                     agent any
                     steps{
                 echo 'cloning...'
                         git 'https://github.com/RayItern/Backup-DevOpscodeDemode-repo.git'
                     }
                 }
-                stage('Compile with slave1'){
-                    agent {label 'slave1'}
+                stage('Compile with slave2 by Eagle'){
+                    agent {label 'slave2'}
                     steps{
                         echo 'compiling...'
                         sh 'mvn compile'
                 }
                 }
-                stage('CodeReview with slave2'){
-                    agent {label 'slave2'}
+                stage('CodeReview with slave1 by Ray'){
+                    agent {label 'slave1'}
                     steps{
                     
                 echo 'codeReview...'
                         sh 'mvn pmd:pmd'
                     }
                 }
-                stage('UnitTest with slave1'){
-                    agent {label 'slave1'}
+                stage('UnitTest with slave2 by Eagle'){
+                    agent {label 'slave2'}
                     steps{
                     echo 'Testing'
                         sh 'mvn test'
@@ -39,7 +39,7 @@
                     }
                 }	
                 }
-                stage('Package on master') {
+                stage('Package on master or Controller or Jenkins') {
             agent {
                 label 'master'
             }
